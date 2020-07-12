@@ -47,6 +47,21 @@ $ . venv/bin/activate
 (venv) $ deactivate
 ```
 
+### Set up DB
+```sh
+# create initial migration dir structure
+(venv) $ python manage.py db init
+
+# detects the changes and creates a migration file
+(venv) $ python manage.py db migrate
+
+# 
+(venv) $ python manage.py db upgrade
+
+# 
+(venv) $ python manage.py db downgrade
+```
+
 ## Local Tests
 WIP
 

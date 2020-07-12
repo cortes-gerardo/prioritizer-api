@@ -18,7 +18,6 @@ def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
-    # db.create_all()
 
 
 class Task(db.Model):
@@ -59,8 +58,12 @@ class Sprint(db.Model):
     goal = Column(String(120), unique=True, nullable=False)
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date, nullable=False)
-    tasks = db.relationship('Task', backref=db.backref('sprint', lazy='joined', cascade='delete-orphan'),
-                            primaryjoin=id == Task.id)
+    tasks = db.relationship(
+        'Task',
+        cascade='all, delete, delete-orphan',
+        backref=db.backref('sprint', cascade='all'),
+        lazy='joined'
+    )
 
     def insert(self):
         db.session.add(self)
