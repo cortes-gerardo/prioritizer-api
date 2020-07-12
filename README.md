@@ -47,8 +47,27 @@ $ . venv/bin/activate
 (venv) $ deactivate
 ```
 
+### Set up DB
+In order to cleanly work with the DB, flask-migration is installed, please use the following commands to control the changes in the DB.
+```sh
+# create initial migration dir structure
+(venv) $ python manage.py db init
+
+# detects the changes and creates a migration file
+(venv) $ python manage.py db migrate
+
+# for upgrade the DB version
+(venv) $ python manage.py db upgrade
+
+# for downgrade the DB version
+(venv) $ python manage.py db downgrade
+```
+
 ## Local Tests
-WIP
+To run the test and ensure everything is working as it should, please run:
+```sh
+(venv) $ python test_app.py 
+```
 
 # API Reference *
 WIP
