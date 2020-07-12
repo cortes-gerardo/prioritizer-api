@@ -12,6 +12,38 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app)
 
+    @app.route('/sprints', methods=['GET'])
+    def get_sprints():
+        return jsonify({'success': True})
+
+    @app.route('/sprints', methods=['POST'])
+    def post_sprints():
+        return jsonify({'success': True})
+
+    @app.route('/sprints/<int:sprint_id>', methods=['PATCH'])
+    def patch_sprints(sprint_id):
+        return jsonify({'success': True})
+
+    @app.route('/sprints/<int:sprint_id>', methods=['DELETE'])
+    def delete_sprints(sprint_id):
+        return jsonify({'success': True})
+
+    @app.route('/sprints/<int:sprint_id>/tasks', methods=['GET'])
+    def get_tasks(sprint_id):
+        return jsonify({'success': True})
+
+    @app.route('/sprints/<int:sprint_id>/tasks', methods=['POST'])
+    def post_tasks(sprint_id):
+        return jsonify({'success': True})
+
+    @app.route('/tasks/<int:task_id>', methods=['PATCH'])
+    def patch_tasks(task_id):
+        return jsonify({'success': True})
+
+    @app.route('/tasks/<int:task_id>', methods=['DELETE'])
+    def delete_tasks(task_id):
+        return jsonify({'success': True})
+
     return app
 
 
