@@ -41,7 +41,7 @@ class Task(db.Model):
     def update(self):
         db.session.commit()
 
-    def __repr__(self):
+    def short(self):
         return {
             'id': self.id,
             'description': self.description,
@@ -49,6 +49,9 @@ class Task(db.Model):
             'urgent': self.urgent,
             'done': self.done
         }
+
+    def __repr__(self):
+        return self.short()
 
 
 class Sprint(db.Model):
@@ -60,9 +63,9 @@ class Sprint(db.Model):
     end_date = db.Column(db.Date, nullable=False)
     tasks = db.relationship(
         'Task',
-        cascade='all, delete, delete-orphan',
-        backref=db.backref('sprint', cascade='all'),
-        lazy='joined'
+        cascade='delete, delete-orphan',
+        backref=db.backref('sprint'),
+        lazy=True
     )
 
     def insert(self):
@@ -76,9 +79,22 @@ class Sprint(db.Model):
     def update(self):
         db.session.commit()
 
-    def __repr__(self):
+    def short(self):
         return {
             'id': self.id,
             'goal': self.goal,
-            'duration': self.duration
+            'start_date': self.start_date,
+            'end_date': self.end_date
         }
+
+    def long(self):
+        return {
+            'id': self.id,
+            'goal': self.goal,
+            'start_date': self.start_date,
+            'end_date': self.end_date,
+            'tasks': self.tasks
+        }
+
+    def __repr__(self):
+        return self.long()
