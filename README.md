@@ -66,7 +66,7 @@ In order to cleanly work with the DB, flask-migration is installed, please use t
 ## Local Tests
 To run the test and ensure everything is working as it should, please run:
 ```sh
-(venv) $ python test_app.py 
+(venv) $ pytest
 ```
 
 # API Reference *
