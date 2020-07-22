@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
 from models import setup_db, Task, Sprint
+from auth import AuthError, requires_auth
 
 
 def create_app(test_config=None):
@@ -13,6 +14,15 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app)
 
+    # CORS Headers
+    @app.after_request
+    def after_request(response):
+        response.headers.add('Access-Control-Allow-Headers', 'Authorization')
+        response.headers.add('Access-Control-Allow-Methods',
+                             'GET,POST,PATCH,DELETE')
+        return response
+
+    # Controllers
     @app.route('/sprints', methods=['GET'])
     def get_sprints():
         sprints = [sprint.short() for sprint in Sprint.query.all()]
@@ -23,6 +33,7 @@ def create_app(test_config=None):
         })
 
     @app.route('/sprints', methods=['POST'])
+    @requires_auth('post:sprint')
     def post_sprints():
         payload = get_sprint_payload()
 
@@ -42,6 +53,7 @@ def create_app(test_config=None):
         }), 201
 
     @app.route('/sprints/<int:sprint_id>', methods=['PATCH'])
+    @requires_auth('patch:sprint')
     def patch_sprints(sprint_id):
         payload = get_sprint_payload()
 
@@ -64,6 +76,7 @@ def create_app(test_config=None):
         })
 
     @app.route('/sprints/<int:sprint_id>', methods=['DELETE'])
+    @requires_auth('delete:sprint')
     def delete_sprints(sprint_id):
         check_sprint_exist(sprint_id)
 
@@ -87,6 +100,7 @@ def create_app(test_config=None):
         })
 
     @app.route('/sprints/<int:sprint_id>/tasks', methods=['POST'])
+    @requires_auth('post:task')
     def post_tasks(sprint_id):
         payload = get_task_payload()
         check_sprint_exist(sprint_id)
@@ -107,6 +121,7 @@ def create_app(test_config=None):
         }), 201
 
     @app.route('/tasks/<int:task_id>', methods=['PATCH'])
+    @requires_auth('patch:task')
     def patch_tasks(task_id):
         payload = get_task_payload()
 
@@ -131,6 +146,7 @@ def create_app(test_config=None):
         })
 
     @app.route('/tasks/<int:task_id>', methods=['DELETE'])
+    @requires_auth('delete:task')
     def delete_tasks(task_id):
         check_task_exist(task_id)
 
@@ -208,6 +224,21 @@ def create_app(test_config=None):
             abort(422)
 
     # Error Handling
+
+    @app.errorhandler(AuthError)
+    def handle_auth_error(error):
+        message = {
+            400: 'Bad Request',
+            401: 'Unauthorized',
+            403: 'Forbidden'
+        }
+        return jsonify({
+            "success": False,
+            "error": error.status_code,
+            "message": message[error.status_code],
+            "code": error.error['code'],
+            "description": error.error['description']
+        }), error.status_code
 
     @app.errorhandler(400)
     def bad_request(error):

@@ -14,7 +14,7 @@ Assignments are grouped in Sprints were the Product Owner defines the _main goal
 
 There are 3 Actors:
 the Stakeholder that can see and add as many tasks wants
-the Manager that is in control of the sprint and can classify each task and delete them if needed.
+the ScrumMaster that is in control of the sprint and can classify each task and delete them if needed.
 and the Developers that can see all the tasks on the sprint.
 
 ## Contributing
