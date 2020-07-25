@@ -13,18 +13,14 @@ Assignments are grouped in Sprints were the Product Owner defines the _main goal
 | Not Important | Delegate or Delay | Eliminate   |
 
 There are 3 Actors:
-the Stakeholder that can see and add as many tasks wants
-the ScrumMaster that is in control of the sprint and can classify each task and delete them if needed.
-and the Developers that can see all the tasks on the sprint.
+the _Stakeholder_ that can see and add as many tasks wants,
+the _ScrumMaster_ that is in control of the sprint and can classify each task and delete them if needed,
+and the _Developer_ that can see all the tasks on the sprint.
 
 ## Contributing
-### Code Style
-Some guidelines to help with the code:
-- Python code is using the [pep8](https://www.python.org/dev/peps/pep-0008/) style guide.
-- For commits on Github [Udacity git commit message](https://udacity.github.io/git-styleguide/) style guide.
+- [How to Contribute](CONTRIBUTING.md)
 
 # Getting Started
-
 ## Prerequisites
 - Python 3.7
 
@@ -32,45 +28,46 @@ Some guidelines to help with the code:
 Is recommended the use of virtual environment, in order to set it up, run the following commands:
 ```sh
 # navigate to root project directory
-$ cd /prioritizer-api
+cd /prioritizer-api
 
 # create a virtual environment (venv) from a local python 3.7 installation
-$ python3.7 -m venv venv
+python3.7 -m venv venv
 
-# activate the venv
-$ . venv/bin/activate
+# activate the (venv)
+. venv/bin/activate
 
-# install the required libs in the venv 
-(venv) $ pip install -r requirements.txt
+# install the required libs in the (venv)
+pip install -r requirements.txt
 
-# close the venv
-(venv) $ deactivate
+# close the (venv)
+deactivate
 ```
 
 ### Set up DB
 In order to cleanly work with the DB, flask-migration is installed, please use the following commands to control the changes in the DB.
 ```sh
+# while inside the (venv)
 # create initial migration dir structure
-(venv) $ python manage.py db init
+python manage.py db init
 
 # detects the changes and creates a migration file
-(venv) $ python manage.py db migrate
+python manage.py db migrate
 
 # for upgrade the DB version
-(venv) $ python manage.py db upgrade
+python manage.py db upgrade
 
 # for downgrade the DB version
-(venv) $ python manage.py db downgrade
+python manage.py db downgrade
 ```
 
 ## Local Tests
 To run the test and ensure everything is working as it should, please run:
 ```sh
-(venv) $ pytest
+pytest
 ```
 
-# API Reference *
-WIP
+# API Documentation
+- [API documentation](API_DOCUMENTATION.md)
 
 # Deployment
 WIP
