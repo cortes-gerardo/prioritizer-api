@@ -1,6 +1,6 @@
 from datetime import datetime
 import os
-from flask import Flask, request, abort, jsonify
+from flask import Flask, render_template, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
@@ -23,6 +23,21 @@ def create_app(test_config=None):
         return response
 
     # Controllers
+    @app.route('/')
+    def index():
+        sprints = [sprint.short() for sprint in Sprint.query.all()]
+        return render_template('pages/home.html', nav='home', sprints=sprints)
+
+    @app.route('/sprints/<int:sprint_id>', methods=['GET'])
+    def select_sprint(sprint_id):
+        sprints = [sprint.short() for sprint in Sprint.query.all()]
+        tasks = [task.short() for task in Task.query.filter_by(sprint_id=sprint_id)]
+        return render_template('pages/home.html', nav='home', sprints=sprints, sprint_selected=sprint_id, tasks=tasks)
+
+    @app.route('/authorize')
+    def authorize():
+        return render_template('pages/authorize.html', nav='auth')
+
     @app.route('/sprints', methods=['GET'])
     def get_sprints():
         sprints = [sprint.short() for sprint in Sprint.query.all()]
@@ -286,4 +301,4 @@ def create_app(test_config=None):
 APP = create_app()
 
 if __name__ == '__main__':
-    APP.run(host='0.0.0.0', port=8080, debug=True)
+    APP.run(host='127.0.0.1', port=8080, debug=True)

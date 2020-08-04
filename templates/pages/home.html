@@ -1,0 +1,35 @@
+{% extends 'layouts/main.html' %}
+{% block header %}
+<script>
+    function on_load() {
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col">
+        <h4>Sprints</h4>
+        <p>
+        <div class="list-group">
+            {% for sprint in sprints %}
+            <a href="/sprints/{{ sprint.id }}"
+               class="list-group-item list-group-item-action {% if sprint.id==sprint_selected %}active{% endif %}">{{
+                sprint.goal }}</a>
+            {% endfor %}
+        </div>
+        </p>
+    </div>
+
+    <div class="col">
+        <h4>Tasks</h4>
+        <p>
+        <ul class="list-group">
+            {% for task in tasks %}
+            <li class="list-group-item">{{ task.description }}</li>
+            {% endfor %}
+        </ul>
+        </p>
+    </div>
+</div>
+{% endblock %}
