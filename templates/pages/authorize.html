@@ -1,0 +1,22 @@
+{% extends 'layouts/main.html' %}
+{% block header %}
+<script>
+    function on_load() {
+        check_token_fragment();
+        load_jwts();
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="row  justify-content-md-center">
+    <div class="col">
+        <form>
+            <div class="form-group">
+                <label for="jwt">JWT:</label>
+                <textarea class="form-control" id="jwt" rows="10"></textarea>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

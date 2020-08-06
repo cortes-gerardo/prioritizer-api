@@ -1,0 +1,104 @@
+{% extends 'layouts/main.html' %}
+{% block header %}
+<script>
+    function on_load() {
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col">
+        <h4>Sprints</h4>
+        <p>
+        <div class="list-group">
+            {% for sprint in sprints %}
+            <a href="/sprints/{{ sprint.id }}"
+               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {% if sprint.id==sprint_selected %}active{% endif %}">
+                {{ sprint.goal }}
+                <small>{{ sprint.duration }} days</small>
+                <span class="badge badge-primary badge-pill">{{ sprint.tasks }}</span>
+            </a>
+            {% endfor %}
+        </div>
+        </p>
+    </div>
+
+    <div class="col">
+        <h4>Tasks</h4>
+        <p>
+        <div class="card">
+            <div class="card-header">
+                Necessity<br>
+                <small>Do it</small>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for task in necessity %}
+                <li class="list-group-item">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="{{ task.id }}" {% if task.done %}checked{% endif %}>
+                        <label class="custom-control-label" for="{{ task.id }}">{{ task.description }}</label>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        </p>
+        <p>
+        <div class="card">
+            <div class="card-header">
+                Productivity<br>
+                <small>Schedule it</small>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for task in productivity %}
+                <li class="list-group-item">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="{{ task.id }}" {% if task.done %}checked{% endif %}>
+                        <label class="custom-control-label" for="{{ task.id }}">{{ task.description }}</label>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        </p>
+        <p>
+        <div class="card">
+            <div class="card-header">
+                Distraction<br>
+                <small>Delegate it</small>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for task in distraction %}
+                <li class="list-group-item">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="{{ task.id }}" {% if task.done %}checked{% endif %}>
+                        <label class="custom-control-label" for="{{ task.id }}">{{ task.description }}</label>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        </p>
+        <p>
+        <div class="card">
+            <div class="card-header">
+                Waste<br>
+                <small>Eliminate it</small>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for task in waste %}
+                <li class="list-group-item">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="{{ task.id }}" {% if task.done %}checked{% endif %}>
+                        <label class="custom-control-label" for="{{ task.id }}">{{ task.description }}</label>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        </p>
+    </div>
+</div>
+{% endblock %}
