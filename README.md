@@ -7,10 +7,10 @@ Assignments are grouped in Sprints were the Product Owner defines the _main goal
 - _Important_: likely to have a profound effect on success.
 - _Urgent_: requiring immediate action or attention.
 
-|               | Urgent            | Not Urgent  |
-| ------------: | ----------------- |------------ |
-| Important     | Do it             | Schedule it |
-| Not Important | Delegate or Delay | Eliminate   |
+|               | Urgent            | Not Urgent   |
+| ------------: | ----------------- | ------------ |
+| Important     | Do it             | Schedule it  |
+| Not Important | Delegate or Delay | Eliminate it |
 
 There are 3 Actors:
 the _Stakeholder_ that can see and add as many tasks wants,

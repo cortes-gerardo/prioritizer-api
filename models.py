@@ -84,8 +84,8 @@ class Sprint(db.Model):
         return {
             'id': self.id,
             'goal': self.goal,
-            'start_date': self.start_date,
-            'end_date': self.end_date
+            'duration': abs((self.start_date - self.end_date).days),
+            'tasks': Task.query.filter_by(sprint_id=self.id).count()
         }
 
     def long(self):

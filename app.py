@@ -17,7 +17,8 @@ def create_app(test_config=None):
     # CORS Headers
     @app.after_request
     def after_request(response):
-        response.headers.add('Access-Control-Allow-Headers', 'Authorization')
+        response.headers.add('Access-Control-Allow-Headers',
+                             'Authorization')
         response.headers.add('Access-Control-Allow-Methods',
                              'GET,POST,PATCH,DELETE')
         return response
@@ -26,13 +27,30 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
         sprints = [sprint.short() for sprint in Sprint.query.all()]
-        return render_template('pages/home.html', nav='home', sprints=sprints)
+        return render_template(
+            'pages/home.html',
+            nav='home',
+            sprints=sprints
+        )
 
     @app.route('/sprints/<int:sprint_id>', methods=['GET'])
     def select_sprint(sprint_id):
         sprints = [sprint.short() for sprint in Sprint.query.all()]
-        tasks = [task.short() for task in Task.query.filter_by(sprint_id=sprint_id)]
-        return render_template('pages/home.html', nav='home', sprints=sprints, sprint_selected=sprint_id, tasks=tasks)
+        necessity = classify_tasks(sprint_id, True, True)
+        productivity = classify_tasks(sprint_id, True, False)
+        distraction = classify_tasks(sprint_id, False, True)
+        waste = classify_tasks(sprint_id, False, False)
+
+        return render_template(
+            'pages/home.html',
+            nav='home',
+            sprints=sprints,
+            sprint_selected=sprint_id,
+            necessity=necessity,
+            productivity=productivity,
+            distraction=distraction,
+            waste=waste
+        )
 
     @app.route('/authorize')
     def authorize():
@@ -107,11 +125,17 @@ def create_app(test_config=None):
     def get_tasks(sprint_id):
         check_sprint_exist(sprint_id)
 
-        tasks = [task.short() for task in Task.query.filter_by(sprint_id=sprint_id)]
+        necessity = classify_tasks(sprint_id, True, True)
+        productivity = classify_tasks(sprint_id, True, False)
+        distraction = classify_tasks(sprint_id, False, True)
+        waste = classify_tasks(sprint_id, False, False)
 
         return jsonify({
             'success': True,
-            'tasks': tasks
+            'necessity': necessity,
+            'productivity': productivity,
+            'distraction': distraction,
+            'waste': waste
         })
 
     @app.route('/sprints/<int:sprint_id>/tasks', methods=['POST'])
@@ -174,6 +198,14 @@ def create_app(test_config=None):
         })
 
     # helpers
+
+    def classify_tasks(id, i, u):
+        return [task.short() for task in
+                Task.query.filter_by(
+                    sprint_id=id,
+                    important=i,
+                    urgent=u
+                )]
 
     def get_task_payload():
         body = request.get_json()
