@@ -27,3 +27,16 @@ function logout() {
     this.token = '';
     this.set_jwt();
 }
+
+function get_domain() {
+    this.protocol = window.location.protocol;
+    this.host = window.location.hostname;
+    this.host = this.host == 'localhost' ? this.host + ':8080' : this.host;
+    return this.protocol + '//' + this.host;
+}
+
+function fill_login_href() {
+    this.domain = 'https://cortes-gerardo.us.auth0.com/authorize?audience=prioritizer&response_type=token&client_id=VsDbNuQQopNlsE60IPR4HoYrVmzQ62Wi&redirect_uri=' + get_domain() + '/authorize'
+    this.a = document.getElementById('login'); //or grab it by tagname etc
+    this.a.href = this.domain
+}

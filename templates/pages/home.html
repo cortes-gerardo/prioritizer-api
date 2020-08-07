@@ -2,6 +2,7 @@
 {% block header %}
 <script>
     function on_load() {
+        fill_login_href();
     }
 </script>
 {% endblock %}
@@ -36,7 +37,7 @@
                 {% for task in necessity %}
                 <li class="list-group-item">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="{{ task.id }}" {% if task.done %}checked{% endif %}>
+                        <input type="checkbox" class="custom-control-input" id="{{ task.id }}" {% if task.done %}checked{% endif %} disabled>
                         <label class="custom-control-label" for="{{ task.id }}">{{ task.description }}</label>
                     </div>
                 </li>
@@ -54,7 +55,7 @@
                 {% for task in productivity %}
                 <li class="list-group-item">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="{{ task.id }}" {% if task.done %}checked{% endif %}>
+                        <input type="checkbox" class="custom-control-input" id="{{ task.id }}" {% if task.done %}checked{% endif %} disabled>
                         <label class="custom-control-label" for="{{ task.id }}">{{ task.description }}</label>
                     </div>
                 </li>
@@ -72,7 +73,7 @@
                 {% for task in distraction %}
                 <li class="list-group-item">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="{{ task.id }}" {% if task.done %}checked{% endif %}>
+                        <input type="checkbox" class="custom-control-input" id="{{ task.id }}" {% if task.done %}checked{% endif %} disabled>
                         <label class="custom-control-label" for="{{ task.id }}">{{ task.description }}</label>
                     </div>
                 </li>
@@ -90,7 +91,7 @@
                 {% for task in waste %}
                 <li class="list-group-item">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="{{ task.id }}" {% if task.done %}checked{% endif %}>
+                        <input type="checkbox" class="custom-control-input" id="{{ task.id }}" {% if task.done %}checked{% endif %} disabled>
                         <label class="custom-control-label" for="{{ task.id }}">{{ task.description }}</label>
                     </div>
                 </li>
