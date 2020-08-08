@@ -14,11 +14,11 @@ class PrioritizerTestCase(unittest.TestCase):
 
     def setUp(self):
         """Executed before each test. Define test variables and initialize app."""
-        self.token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imp1SkE3RnI4NXFkLXJCRVc4QkxYYiJ9.eyJpc3MiOiJodHRwczovL2NvcnRlcy1nZXJhcmRvLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZjEzYjBjZDJhZDMyYzAwMTM0ZmY2NGUiLCJhdWQiOiJwcmlvcml0aXplciIsImlhdCI6MTU5NTEyNjUyNSwiZXhwIjoxNTk1MjEyOTI1LCJhenAiOiJWc0RiTnVRUW9wTmxzRTYwSVBSNEhvWXJWbXpRNjJXaSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOnNwcmludCIsImRlbGV0ZTp0YXNrIiwicGF0Y2g6c3ByaW50IiwicGF0Y2g6dGFzayIsInBvc3Q6c3ByaW50IiwicG9zdDp0YXNrIl19.AvbNnGWz-kqiLFaF7X9alZUaXzcjwjpD1t-sLQA8HSro031b98g_mI5fWbhm0lQaVzAcydp7MvYkDZJ5luV_5Sci9CcJvjKg0TwhF8i9tnSkGKv7Ja-E4XC-oUZxNZfMWGezKXu1ujbAodvuOy62XML4YYUqGRg8q-tQ6Zsrt6J1Shccvzj9s5e96j_2daFdIRlLr5d467iLs6xweRA6Wqk9ENkRVDfRXbIuPyzPrbgsHzLAM_TbLyUL9YzYrG-uM0I0e-smkFsbtQX8pqLIbvEdr23DZl72L0gySX_yauLHpjTwbDsA3F_DupN2ZZBHYqfGwEee0M59Bzlz0ENZmA'
+        self.scrum_master_token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imp1SkE3RnI4NXFkLXJCRVc4QkxYYiJ9.eyJpc3MiOiJodHRwczovL2NvcnRlcy1nZXJhcmRvLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwMzMwMjY3Njk2ODg3ODI1MjE4NyIsImF1ZCI6WyJwcmlvcml0aXplciIsImh0dHBzOi8vY29ydGVzLWdlcmFyZG8udXMuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTU5Njg1OTk5MSwiZXhwIjoxNTk2OTQ2MzkxLCJhenAiOiJWc0RiTnVRUW9wTmxzRTYwSVBSNEhvWXJWbXpRNjJXaSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6c3ByaW50IiwiZGVsZXRlOnRhc2siLCJwYXRjaDpzcHJpbnQiLCJwYXRjaDp0YXNrIiwicG9zdDpzcHJpbnQiLCJwb3N0OnRhc2siXX0.RPlkFnFyUK6LFesL14tBj6esKSCbpV51YTVNBXd7IH3GrF9t0VF_fCsi0OJrurvuDq5yHoorlDrr6q22NQTAfgqdap5qQgq6x07Ut3bL8PSYCaKUtg0ZqQrWdy7GKRn-Yt3YpPoBmqoCrV9KLEVlo1PJZWqKIR3ASLSXkd4lIvZXmRC2vwAgRM4AObFYrmmbCYdNBetFBC_DV9zYJL_TiEzYCrbZKGz9W9unvhTeP6NxR17Iq-A2fyvwjLKYmK4vu-dHUc3dum7SQQKgx0xFAoPLOidGi0dfa2yMWNLgjw7HLXaIE0eE6pUjOZck4Pe51DcBlKn-7WQvXxbvQtF5GQ'
         self.app = create_app()
         self.client = self.app.test_client
         # self.database_name = "postgres"
-        self.database_path = "postgres://postgres:password!@localhost:5432/postgres"  # .format('localhost:5432', self.database_name)
+        self.database_path = "postgres://postgres:password@localhost:5432/prioritizer_test"
         setup_db(self.app, self.database_path)
 
         sprint = Sprint(
@@ -52,7 +52,7 @@ class PrioritizerTestCase(unittest.TestCase):
         res = self.client().get(
             '/sprints',
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -69,7 +69,7 @@ class PrioritizerTestCase(unittest.TestCase):
                 'end_date': '2020-08-19'
             },
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -82,7 +82,7 @@ class PrioritizerTestCase(unittest.TestCase):
             '/sprints',
             json={},
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -99,7 +99,7 @@ class PrioritizerTestCase(unittest.TestCase):
                 'end_date': '2020-08-19'
             },
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -114,7 +114,7 @@ class PrioritizerTestCase(unittest.TestCase):
                 'goal': 'try to take over the world!'
             },
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -127,7 +127,7 @@ class PrioritizerTestCase(unittest.TestCase):
             '/sprints/%d' % self.mock_sprint_id,
             json={},
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -142,7 +142,7 @@ class PrioritizerTestCase(unittest.TestCase):
             '/sprints/0',
             json={},
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -165,7 +165,7 @@ class PrioritizerTestCase(unittest.TestCase):
                 'goal': 'duplicate goal'
             },
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -178,7 +178,7 @@ class PrioritizerTestCase(unittest.TestCase):
         res = self.client().delete(
             '/sprints/%d' % self.mock_sprint_id,
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -190,7 +190,7 @@ class PrioritizerTestCase(unittest.TestCase):
         res = self.client().delete(
             '/sprints/0',
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -202,7 +202,7 @@ class PrioritizerTestCase(unittest.TestCase):
         res = self.client().get(
             '/sprints/%d/tasks' % self.mock_sprint_id,
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -214,7 +214,7 @@ class PrioritizerTestCase(unittest.TestCase):
         res = self.client().get(
             '/sprints/0/tasks',
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -232,7 +232,7 @@ class PrioritizerTestCase(unittest.TestCase):
                 'done': False
             },
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -246,7 +246,7 @@ class PrioritizerTestCase(unittest.TestCase):
             '/sprints/%d/tasks' % self.mock_sprint_id,
             json={},
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -265,7 +265,7 @@ class PrioritizerTestCase(unittest.TestCase):
                 'done': False
             },
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -280,7 +280,7 @@ class PrioritizerTestCase(unittest.TestCase):
                 'done': True
             },
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -294,7 +294,7 @@ class PrioritizerTestCase(unittest.TestCase):
             '/tasks/%d' % self.mock_task_id,
             json={},
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -310,7 +310,7 @@ class PrioritizerTestCase(unittest.TestCase):
                 'done': True
             },
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -322,7 +322,7 @@ class PrioritizerTestCase(unittest.TestCase):
         res = self.client().delete(
             '/tasks/%d' % self.mock_task_id,
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
@@ -335,7 +335,7 @@ class PrioritizerTestCase(unittest.TestCase):
         res = self.client().delete(
             '/tasks/0',
             headers={
-                'Authorization': self.token
+                'Authorization': self.scrum_master_token
             }
         )
         data = json.loads(res.data)
