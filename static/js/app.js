@@ -1,3 +1,5 @@
+// auth
+
 const JWTS_LOCAL_KEY = 'JWTS_LOCAL_KEY';
 
 // invoked in app.component on load
@@ -28,6 +30,11 @@ function logout() {
     this.set_jwt();
 }
 
+// login & logout
+
+const CLIENT_ID = 'VsDbNuQQopNlsE60IPR4HoYrVmzQ62Wi'
+const DOMAIN = 'cortes-gerardo.us.auth0.com'
+
 function get_domain() {
     this.protocol = window.location.protocol;
     this.host = window.location.hostname;
@@ -35,8 +42,14 @@ function get_domain() {
     return this.protocol + '//' + this.host;
 }
 
-function fill_login_href() {
-    this.domain = 'https://cortes-gerardo.us.auth0.com/authorize?audience=prioritizer&response_type=token&client_id=VsDbNuQQopNlsE60IPR4HoYrVmzQ62Wi&redirect_uri=' + get_domain() + '/authorize'
-    this.a = document.getElementById('login'); //or grab it by tagname etc
-    this.a.href = this.domain
+function fill_login() {
+    this.link = 'https://' + DOMAIN + '/authorize?audience=prioritizer&response_type=token&client_id=' + CLIENT_ID + '&redirect_uri=' + get_domain() + '/authorize'
+    this.a = document.getElementById('login');
+    this.a.href = this.link
+}
+
+function fill_logout() {
+    this.link = 'https://' + DOMAIN + '/v2/logout?client_id=' + CLIENT_ID + '&returnTo=' + get_domain() + '/authorize'
+    this.a = document.getElementById('logout');
+    this.a.href = this.link
 }

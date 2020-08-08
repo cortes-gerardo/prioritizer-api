@@ -2,13 +2,13 @@
 ## Introduction
 
 ## Getting Started
-- Base URL: at the moment the code runs locally at `http://0.0.0.0:8080/`
+- Base URL: at the moment the code runs at `https://prioritizer-api.herokuapp.com`
 - Authentication: Authentication to the API is performed via HTTP Basic Auth. Provide your `JWT` as the basic auth value.
  login using the credentials in [Auth0 login](https://cortes-gerardo.us.auth0.com/authorize?audience=prioritizer&response_type=token&client_id=VsDbNuQQopNlsE60IPR4HoYrVmzQ62Wi&redirect_uri=http://localhost:8080/authorize) to generate the `JWT`
 
 please store this value as shown to run the following cURL
 ```sh
-export JWT=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imp1SkE3RnI4NXFkLXJCRVc4QkxYYiJ9.eyJpc3MiOiJodHRwczovL2NvcnRlcy1nZXJhcmRvLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZjEzYjBjZDJhZDMyYzAwMTM0ZmY2NGUiLCJhdWQiOiJwcmlvcml0aXplciIsImlhdCI6MTU5NTY0NjY4MiwiZXhwIjoxNTk1NzMzMDgyLCJhenAiOiJWc0RiTnVRUW9wTmxzRTYwSVBSNEhvWXJWbXpRNjJXaSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOnNwcmludCIsImRlbGV0ZTp0YXNrIiwicGF0Y2g6c3ByaW50IiwicGF0Y2g6dGFzayIsInBvc3Q6c3ByaW50IiwicG9zdDp0YXNrIl19.Ao_vqcJ2fCdpzPgQDO9-5zi2USHfqtEe32u6KAOUPeXs2Xc2v5lY3Xpyq_R3jhI38vFXz82Qr85xQbfD3lyjqu5gsm3yagvPOcnmlyQDRV3k07VfrtrvC7ehZiP0QZD0uafLrtGrgGY2avXdUoRIoanJBZw-a_Idq_9MOUKOQQrLr9ZV3y1JMrp8eDrIAsk5SqhRy7UFpysFfHMkQS1ZCszMxtYTl1boklhJS69czAYmbnBT19C_hpPiIsBdvIvIShta9H_J12t0eWsDpeXp51FcbvkhQkuZF3AbevzZ8erO_hBLJnoAMZhNXOuhMz_8bz08vEvGjbJ-mPbp1HF39Q
+export JWT=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imp1SkE3RnI4NXFkLXJCRVc4QkxYYiJ9.eyJpc3MiOiJodHRwczovL2NvcnRlcy1nZXJhcmRvLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZjEzYjBjZDJhZDMyYzAwMTM0ZmY2NGUiLCJhdWQiOiJwcmlvcml0aXplciIsImlhdCI6MTU5Njg2NzQ4MiwiZXhwIjoxNTk2OTUzODgyLCJhenAiOiJWc0RiTnVRUW9wTmxzRTYwSVBSNEhvWXJWbXpRNjJXaSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOnNwcmludCIsImRlbGV0ZTp0YXNrIiwicGF0Y2g6c3ByaW50IiwicGF0Y2g6dGFzayIsInBvc3Q6c3ByaW50IiwicG9zdDp0YXNrIl19.d1kWv3v2p5YQCeQBdYzetYwLTGmefdffDQ2WYIwLSIqDf3hh0uKoxNFnreov1kfkR0IB3ardyGmCzpscKtDhEJO18XoT-e-VqtEk1zWWwOtE8RgiupwNSbLYVm_G0yPVlHAUJ5dYPcp9y_aLPN4JbOqaoA71qCAJW6YhnTuaUxsH4To0RZCva3SDrTkVNsCsNkg__RreN9mnYF58s_vfP5oUSAsBHy6obyKhiYzmBz2gFw8E_dcMmYPXmhBhmIw3vZpeh2iFUjr0dguwrb5DQacNAAfI06iAwLnJXloxfLr5LJd4OZrorSlOTvdYh1aFWnobwwsD6uE5GG6wohvVbA
 ```
 
 ## Error Handling
@@ -58,7 +58,7 @@ Shows all the sprints stored
 
 ###### Example Request:
 ```sh
-curl http://0.0.0.0:8080/sprints
+curl https://prioritizer-api.herokuapp.com/sprints
 ```
 
 ###### Example Response:
@@ -69,10 +69,10 @@ Body:
 {
   "sprints": [
     {
-      "id": 248,
-      "goal": "edited goal",
-      "start_date": "Fri, 24 Jul 2020 00:00:00 GMT",
-      "end_date": "Fri, 31 Jul 2020 00:00:00 GMT"
+      "duration": 14,
+      "goal": "finish Capstone project",
+      "id": 1,
+      "tasks": 9
     }
   ],
   "success": true
@@ -84,14 +84,14 @@ Adds a new sprint
 
 ###### Example Request: 
 ```sh
-curl http://0.0.0.0:8080/sprints \
+curl https://prioritizer-api.herokuapp.com/sprints \
 -X POST \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer ${JWT}" \
 -d '{
     "goal": "this is a goal",
-    "start_date": "2020-07-12",
-    "end_date": "2020-07-19"
+    "start_date": "2020-08-08",
+    "end_date": "2020-08-16"
 }'
 ```
 
@@ -102,13 +102,14 @@ Body:
 ```json
 {
   "sprint": {
-    "id": 248,
+    "id": 2,
     "goal": "this is a goal",
-    "start_date": "Sun, 12 Jul 2020 00:00:00 GMT",
-    "end_date": "Sun, 19 Jul 2020 00:00:00 GMT"
+    "duration": 8,
+    "tasks": 0
   },
   "success": true
 }
+
 ```
 
 ### PATCH /sprints/{{sprint_id}}
@@ -119,14 +120,14 @@ Edit all or individual fields of the sprint
 
 ###### Example Request: 
 ```sh
-curl http://0.0.0.0:8080/sprints/248 \
+curl https://prioritizer-api.herokuapp.com/sprints/2 \
 -X PATCH \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer ${JWT}" \
 -d '{
-    "goal": "edited goal",
-    "start_date": "2020-07-24",
-    "end_date": "2020-07-31"
+    "goal": "this is an edited goal",
+    "start_date": "2020-08-08",
+    "end_date": "2020-08-24"
 }'
 ```
 
@@ -137,10 +138,10 @@ Body:
 ```json
 {
   "sprint": {
-    "id": 248,
-    "goal": "edited goal",
-    "start_date": "Fri, 24 Jul 2020 00:00:00 GMT",
-    "end_date": "Fri, 31 Jul 2020 00:00:00 GMT"
+    "id": 2,
+    "goal": "this is an edited goal",
+    "duration": 16,
+    "tasks": 0
   },
   "success": true
 }
@@ -154,7 +155,7 @@ Deletes a sprint by id
 
 ###### Example Request: 
 ```sh
-curl http://0.0.0.0:8080/sprints/248 \
+curl https://prioritizer-api.herokuapp.com/sprints/2 \
 -X DELETE \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer ${JWT}"
@@ -165,6 +166,10 @@ Header: `Content-Type: application/json`
 
 Body:
 ```json
+{
+  "success": true,
+  "deleted_sprint": 2
+}
 ```
 
 ### GET /sprints/{{sprint_id}}/tasks
@@ -175,7 +180,7 @@ Shows all the tasks from the sprint specified in the URL
 
 ###### Example Request: 
 ```sh
-curl http://0.0.0.0:8080/sprints/248/tasks
+curl https://prioritizer-api.herokuapp.com/sprints/2/tasks
 ```
 
 ###### Example Response:
@@ -185,15 +190,18 @@ Body:
 ```json
 {
   "success": true,
-  "tasks": [
+  "necessity": [],
+  "productivity": [],
+  "distraction": [
     {
-      "id": 243,
       "description": "check all emails",
-      "important": true,
-      "urgent": true,
-      "done": false
+      "done": false,
+      "id": 35,
+      "important": false,
+      "urgent": true
     }
-  ]
+  ],
+  "waste": []
 }
 ```
 
@@ -205,13 +213,13 @@ Adds a new task to the sprint specified in the URL
 
 ###### Example Request: 
 ```sh
-curl http://0.0.0.0:8080/sprints/248/tasks \
+curl https://prioritizer-api.herokuapp.com/sprints/2/tasks \
 -X POST \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer ${JWT}" \
 -d '{
     "description": "check all emails",
-    "important": true,
+    "important": false,
     "urgent": true,
     "done": false
 }'
@@ -223,11 +231,11 @@ Header: `Content-Type: application/json`
 Body:
 ```json
 {
-  "success": true, 
+  "success": true,
   "task": {
-    "id": 243, 
-    "description": "check all emails", 
-    "important": true, 
+    "id": 35,
+    "description": "check all emails",
+    "important": false,
     "urgent": true,
     "done": false
   }
@@ -242,14 +250,11 @@ Edit one or all the fields from a task
 
 ###### Example Request: 
 ```sh
-curl http://0.0.0.0:8080/tasks/243 \
+curl https://prioritizer-api.herokuapp.com/tasks/35 \
 -X PATCH \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer ${JWT}" \
 -d '{
-    "description": "check all emails",
-    "important": true,
-    "urgent": true,
     "done": true
 }'
 ```
@@ -262,9 +267,9 @@ Body:
 {
   "success": true,
   "task": {
-    "id": 243,
+    "id": 35,
     "description": "check all emails",
-    "important": true,
+    "important": false,
     "urgent": true,
     "done": true
   }
@@ -279,7 +284,7 @@ Delete a task with only the id
 
 ###### Example Request: 
 ```sh
-curl http://0.0.0.0:8080/tasks/243 \
+curl https://prioritizer-api.herokuapp.com/tasks/35 \
 -X DELETE \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer ${JWT}"
@@ -290,4 +295,8 @@ Header: `Content-Type: application/json`
 
 Body:
 ```json
+{
+  "success": true,
+  "deleted_task": 35
+}
 ```

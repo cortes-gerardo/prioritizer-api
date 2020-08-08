@@ -118,7 +118,7 @@ def create_app(test_config=None):
 
         return jsonify({
             'success': True,
-            'sprint_deleted': sprint_id
+            'deleted_sprint': sprint_id
         })
 
     @app.route('/sprints/<int:sprint_id>/tasks', methods=['GET'])
