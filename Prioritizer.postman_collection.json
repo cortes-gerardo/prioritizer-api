@@ -1,0 +1,946 @@
+{
+	"info": {
+		"_postman_id": "0f891ac6-4185-4873-9b98-1d87c8d9ecb8",
+		"name": "Prioritizer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ScrumMaster",
+			"item": [
+				{
+					"name": "/sprints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb9d028b-2e96-4052-8a86-02e0b6e904b3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/sprints",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sprints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "96954d2a-9335-474d-927d-e7b8772876cc",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"goal\": \"deliver Capstone project\",\n    \"start_date\": \"2020-07-12\",\n    \"end_date\": \"2020-07-19\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/sprints",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sprints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df30ba33-c506-4464-803a-15fb4960e32f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"start_date\": \"2020-08-12\",\n    \"end_date\": \"2020-08-19\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/sprints/{{sprint_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints",
+								"{{sprint_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1879af13-a355-45b2-9eb8-d1373737e333",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"write test for a functionality and push the changes\",\n    \"important\": true,\n    \"urgent\": true,\n    \"done\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/sprints/{{sprint_id}}/tasks",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints",
+								"{{sprint_id}}",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "308f8a05-91de-43b6-b67c-20ea6f1a9d5f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/sprints/{{sprint_id}}/tasks",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints",
+								"{{sprint_id}}",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "92cc9ba8-b7b6-47e7-bec2-d2a699eb6f30",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"done\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/tasks/{{task_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tasks",
+								"{{task_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imp1SkE3RnI4NXFkLXJCRVc4QkxYYiJ9.eyJpc3MiOiJodHRwczovL2NvcnRlcy1nZXJhcmRvLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZjEzYjBjZDJhZDMyYzAwMTM0ZmY2NGUiLCJhdWQiOiJwcmlvcml0aXplciIsImlhdCI6MTU5Njg0MjU4MywiZXhwIjoxNTk2OTI4OTgzLCJhenAiOiJWc0RiTnVRUW9wTmxzRTYwSVBSNEhvWXJWbXpRNjJXaSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOnNwcmludCIsImRlbGV0ZTp0YXNrIiwicGF0Y2g6c3ByaW50IiwicGF0Y2g6dGFzayIsInBvc3Q6c3ByaW50IiwicG9zdDp0YXNrIl19.Eh_racj7ivM-D21oOVb7iZVEi1T6l9iI4UZlAySWZvPCr5RJk8ZJ4LmxZxyr5bPvCdzE_9gPUHipZyh8aNdpV5R0OCVDHl7O3WVcHYTo3WHmSPlo_32TxBNnMkq3hoKDUI4vv8ahMYVU1j2_E3P_nCq47AQmAHSwfM0BLudUCziGKDK6gRPj8EwOLooiOqXS54_JIPQy7hcVCANRM4EUVFmvSJZT3E2i7xQ2YtN1xSU5Wklkp6duwn4AAD4q8gmdWrmuMUFLin5n5VqtxTjgVx35xRjClm5AuD0UnNZcBR5Km_gCXrnQj_QKgm1_Mf78m2DDZwxxGwMyVTqW-2D5xQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4fb6b339-984f-4f9f-9c6c-d1cca4ef51a9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae071de7-a02c-4d4c-8206-c31184d20af7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Stakeholder",
+			"item": [
+				{
+					"name": "/sprints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6498ed56-7ba6-4a96-9d05-b33ca66d2b45",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/sprints",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sprints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "949764b4-6c52-4ab5-8114-e3302880eab0",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"goal\": \"this is a goal\",\n    \"start_date\": \"2020-07-12\",\n    \"end_date\": \"2020-07-19\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/sprints",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sprints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ae9739c-7fd2-4fd0-8100-33b42df2cdf9",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"goal\": \"keep the house clean 2\",\n    \"start_date\": \"2020-07-12\",\n    \"end_date\": \"2020-07-21\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/sprints/{{sprint_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints",
+								"{{sprint_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85fe4f40-3043-4563-bf91-10159407b996",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"constestar emails\",\n    \"important\": true,\n    \"urgent\": true,\n    \"done\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/sprints/{{sprint_id}}/tasks",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints",
+								"{{sprint_id}}",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "635f5676-e88a-47c5-981f-7722ffcf4bd7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/sprints/{{sprint_id}}/tasks",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints",
+								"{{sprint_id}}",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3907cd83-934f-40fd-90aa-dfbc16cf1d53",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"sacar la basura\",\n    \"important\": false,\n    \"urgent\": true,\n    \"done\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/tasks/{{task_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tasks",
+								"{{task_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8b145879-4ee9-4178-80a7-3dfeffb6c39e",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/tasks/{{task_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tasks",
+								"{{task_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sprints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2075a658-203d-4913-85ac-96b69c9751fa",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/sprints/{{sprint_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints",
+								"{{sprint_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imp1SkE3RnI4NXFkLXJCRVc4QkxYYiJ9.eyJpc3MiOiJodHRwczovL2NvcnRlcy1nZXJhcmRvLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZjEzYzA4OGRiZjZmZjAwMTM1YzgzMzkiLCJhdWQiOiJwcmlvcml0aXplciIsImlhdCI6MTU5Njg0MTYwOSwiZXhwIjoxNTk2OTI4MDA5LCJhenAiOiJWc0RiTnVRUW9wTmxzRTYwSVBSNEhvWXJWbXpRNjJXaSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsicG9zdDp0YXNrIl19.QdpPyLYwU2_93QMManvO9CCfOB3K6aS-Uz7qOxRi0klmUl1w6SwLrIo2pwWbjEn8nZql5CaAjR1kynChWJXdkCpxeOx9VV2iTYbFtsUNStRLc8_vBUa5cvAU79Jy0z-hfG_0c5YJRz-nu8dvDOTg1DHJef_m-bmANfMRJ9KXTBWIZkVoO0nPGAA8GRmksP52h7dwiNKkJEVME3vJg1TKY_XGoSOdsl3ShQzYiIrVkCXfHbhsZs015dVPy391FUFa6W7P94e94fNjr-mdzhsIQXfIEgkFe4BsZh9rUnaY5MvdA9jk9NCEItOpOI-HS-JM1NsTCMKFL8xEQJwjiJnQnA",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9794b36c-8a6c-4602-befb-bd04a961bae5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e090f99-08cb-408a-a311-7edb8af7e8fc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "/sprints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f353d0a8-88cd-46ba-8f56-140414a6a8ec",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/sprints",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sprints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d7dbd2b7-9607-4d46-982d-cd98b7da1be0",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"goal\": \"this is other goal\",\n    \"start_date\": \"2020-08-12\",\n    \"end_date\": \"2020-08-19\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/sprints",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sprints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "374ed97b-879a-4d13-a477-5c8981662b26",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"goal\": \"keep the house clean 2\",\n    \"start_date\": \"2020-07-12\",\n    \"end_date\": \"2020-07-21\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/sprints/{{sprint_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints",
+								"{{sprint_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "54dc7aee-6870-46c8-b5cb-893409a73fdc",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"constestar emails\",\n    \"important\": true,\n    \"urgent\": true,\n    \"done\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/sprints/{{sprint_id}}/tasks",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints",
+								"{{sprint_id}}",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e27bd901-888c-45e6-a2dc-04d871b020c1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/sprints/{{sprint_id}}/tasks",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints",
+								"{{sprint_id}}",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c452a39d-bede-4793-8c2d-512be9fc71a3",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"sacar la basura\",\n    \"important\": false,\n    \"urgent\": true,\n    \"done\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/tasks/{{task_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tasks",
+								"{{task_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1df2c62b-252b-42b0-8ebd-02673611f592",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/tasks/{{task_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tasks",
+								"{{task_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sprints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3db95220-6f4d-457a-920c-140c5c6ec752",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/sprints/{{sprint_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sprints",
+								"{{sprint_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "18442656-cc5c-4d56-a03b-c4c362ccbe1a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6f4413ac-60e1-4d53-b780-61ce0276d975",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "4c148fd8-23db-4543-8f53-d203d91ba8f0",
+			"key": "host",
+			"value": "localhost:8080"
+		},
+		{
+			"id": "1d157a4f-ab7b-42de-a0c0-4c585a057fe3",
+			"key": "sprint_id",
+			"value": ""
+		},
+		{
+			"id": "ddfc0d48-8616-4b18-8ae2-0f28de5128d8",
+			"key": "task_id",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
+}
